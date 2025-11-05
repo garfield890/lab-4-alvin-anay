@@ -27,15 +27,20 @@ def point_ordering(point1 : Point2, point2 : Point2) -> bool:
 
 class BSTTests(unittest.TestCase): 
     def test1(self): 
-        bst1 = BinarySearchTree(int_ordering, None)
+        bst1 : BinarySearchTree = BinarySearchTree(int_ordering, None)
         self.assertEqual(is_empty(bst1), True)
-        bst2 = BinarySearchTree(int_ordering, Node(4, None, None))
+        bst2 : BinarySearchTree = BinarySearchTree(int_ordering, Node(4, None, None))
         self.assertEqual(is_empty(bst2), False)
-        bst3 = BinarySearchTree(int_ordering, Node(4, Node(3, Node(2, None, None), None), Node(5, None, Node(5, None, None))))
+        bst3 : BinarySearchTree = BinarySearchTree(int_ordering, Node(4, Node(3, Node(2, None, None), None), Node(5, None, Node(5, None, None))))
         self.assertEqual(is_empty(bst3), False)
     
-    def test2(self):
-        pass
+    def test3(self):
+        bst1 : BinarySearchTree = BinarySearchTree(int_ordering, Node(4, Node(3, Node(2, None, None), None), Node(5, None, Node(5, None, None))))
+        self.assertEqual(lookup(bst1, 2), True)
+        bst2 : BinarySearchTree = BinarySearchTree(str_ordering, Node("d", Node("b", Node("a", None, None), Node("c", None, None)), Node("f", None, None)))
+        self.assertEqual(lookup(bst2, "p"), False)
+        bst3 : BinarySearchTree = BinarySearchTree(point_ordering, Node(Point2(4,5), Node(Point2(1,2), None, None), Node(Point2(56, 57), None, None)))
+        self.assertEqual(lookup(bst3, Point2(56,57)), True)
 
 
 if (__name__ == '__main__'): 
