@@ -1,13 +1,16 @@
 import sys 
-import unittest 
-from typing import * 
-from dataclasses import dataclass 
+#import unittest 
+from typing import List 
+#from dataclasses import dataclass 
 import math 
 import matplotlib.pyplot as plt 
 import numpy as np 
-import random 
-sys.setrecursionlimit(10**6) 
-from bst import * 
+#import random 
+sys.setrecursionlimit(10**6)
+
+from bst import *
+
+
 TREES_PER_RUN : int = 10000 
 def example_graph_creation() -> None: 
     # Return log-base-2 of 'x' + 5.
