@@ -1,6 +1,6 @@
 import sys 
-import unittest 
-from typing import * 
+#import unittest 
+from typing import Any, Callable, Union, TypeAlias
 from dataclasses import dataclass 
 sys.setrecursionlimit(10**6)
 
@@ -52,7 +52,7 @@ def _lookup(tree: BinTree, val: Any, comp: Callable[[Any, Any], bool]) -> bool:
 
 # removes an elenment from a Binary Search Tree
 def delete(bst: BinarySearchTree, value: Any) -> BinarySearchTree:
-    return _delete(bst.tree, value, bst.comes_before)
+    return BinarySearchTree(bst.comes_before, _delete(bst.tree, value, bst.comes_before))
 
 def _delete(tree: BinTree, val: Any, comp: Callable[[Any, Any], bool]) -> BinTree: 
     match tree:
@@ -71,8 +71,9 @@ def _delete(tree: BinTree, val: Any, comp: Callable[[Any, Any], bool]) -> BinTre
                 elif l != None and r == None:
                     return l
                 else: 
-                    n = _find_smallest(r)
-                    return Node()
+                    small : BinTree = _find_smallest(r)
+                    return Node(small.value, l, _delete(r, small.value, comp))
+
 
 def _find_smallest(tree: BinTree) -> Node: 
     if tree == None: 
@@ -80,6 +81,6 @@ def _find_smallest(tree: BinTree) -> Node:
     l = tree.left
     r = tree.right
     if l == None and r == None:
-        return Node(tree.value, l, r)
+        return tree
     else:
         return _find_smallest(l)
