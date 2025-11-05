@@ -34,6 +34,11 @@ class BSTTests(unittest.TestCase):
         bst3 : BinarySearchTree = BinarySearchTree(int_ordering, Node(4, Node(3, Node(2, None, None), None), Node(5, None, Node(5, None, None))))
         self.assertEqual(is_empty(bst3), False)
     
+    def test2(self):
+        l1 = BinarySearchTree(int_ordering, Node(20, Node(3, Node(2, None, None), Node(6, None, None)), Node(80, None, Node(100, None, None))))
+        r1 = BinarySearchTree(int_ordering, Node(20, Node(3, Node(2, None, None), Node(6, None, Node(10, None, None))), Node(80, None, Node(100, None, None))))
+        self.assertEqual(insert(l1, 10), r1)
+
     def test3(self):
         bst1 : BinarySearchTree = BinarySearchTree(int_ordering, Node(4, Node(3, Node(2, None, None), None), Node(5, None, Node(5, None, None))))
         self.assertEqual(lookup(bst1, 2), True)
@@ -41,7 +46,6 @@ class BSTTests(unittest.TestCase):
         self.assertEqual(lookup(bst2, "p"), False)
         bst3 : BinarySearchTree = BinarySearchTree(point_ordering, Node(Point2(4,5), Node(Point2(1,2), None, None), Node(Point2(56, 57), None, None)))
         self.assertEqual(lookup(bst3, Point2(56,57)), True)
-
 
 if (__name__ == '__main__'): 
     unittest.main() 
