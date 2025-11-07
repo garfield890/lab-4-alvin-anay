@@ -39,6 +39,14 @@ class BSTTests(unittest.TestCase):
         r1 = BinarySearchTree(int_ordering, Node(20, Node(3, Node(2, None, None), Node(6, None, Node(10, None, None))), Node(80, None, Node(100, None, None))))
         self.assertEqual(insert(l1, 10), r1)
 
+        l2 = BinarySearchTree(str_ordering, Node("aaaaa", Node("aaa", None, None), None))
+        r2 = BinarySearchTree(str_ordering, Node("aaaaa", Node("aaa", None, None), Node("aaaaaa", None, None)))
+        self.assertEqual(insert(l2, "aaaaaa"), r2)
+
+        l3 = BinarySearchTree(point_ordering, None)
+        r3 = BinarySearchTree(point_ordering, Node(Point2(10, 10), None, None))
+        self.assertEqual(insert(l3, Point2(10, 10)), r3)
+
     def test3(self):
         bst1 : BinarySearchTree = BinarySearchTree(int_ordering, Node(4, Node(3, Node(2, None, None), None), Node(5, None, Node(5, None, None))))
         self.assertEqual(lookup(bst1, 2), True)
@@ -46,6 +54,21 @@ class BSTTests(unittest.TestCase):
         self.assertEqual(lookup(bst2, "p"), False)
         bst3 : BinarySearchTree = BinarySearchTree(point_ordering, Node(Point2(4,5), Node(Point2(1,2), None, None), Node(Point2(56, 57), None, None)))
         self.assertEqual(lookup(bst3, Point2(56,57)), True)
+
+    def test4(self):
+        self.assertEqual(delete(BinarySearchTree(int_ordering, None), 25), BinarySearchTree(int_ordering, None))
+
+        l1 = BinarySearchTree(int_ordering, Node(20, Node(3, Node(2, None, None), Node(6, None, None)), Node(80, None, Node(100, None, None))))
+        r1 = BinarySearchTree(int_ordering, Node(20, Node(6, Node(2, None, None), None), Node(80, None, Node(100, None, None))))
+        self.assertEqual(delete(l1, 3), r1)
+
+        l2 = BinarySearchTree(str_ordering, Node("aaaaa", Node("aaa", None, None), Node("aaaaaa", None, None)))
+        r2 = BinarySearchTree(str_ordering, Node("aaaaa", None, Node("aaaaaa", None, None)))
+        self.assertEqual(delete(l2, "aaa"), r2)
+
+        l3 = BinarySearchTree(point_ordering, Node(Point2(10, 10), None, None))
+        r3 = BinarySearchTree(point_ordering, None)
+        self.assertEqual(delete(l3, Point2(10, 10)), r3)
 
 if (__name__ == '__main__'): 
     unittest.main() 
